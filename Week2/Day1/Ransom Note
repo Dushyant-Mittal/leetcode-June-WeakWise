@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        map<char,int>x,y;
+        for(auto u:ransomNote){
+            x[u]++;
+        }
+        for(auto u:magazine){
+            y[u]++;
+        }
+        for(auto u:ransomNote){
+            if(y[u]<x[u]){
+                return false;
+            }
+        }
+        return true;
+    }
+};
