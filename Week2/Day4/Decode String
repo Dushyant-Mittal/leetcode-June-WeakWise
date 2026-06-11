@@ -1,0 +1,29 @@
+class Solution {
+public:
+  string decodeString(string s) {
+    stack>stk;
+    string str="";
+    int num=0;
+    for(char c:s){
+      if(isdigit(c)){
+	      num=num*10+(c-'0');
+	    }
+      else if(c=='['){
+        stk.push({str,num});
+        str="";
+        num=0;
+      }
+      else if(c==']'){
+        auto p=stk.top();
+        stk.pop();
+	      string temp="";
+        for(int i=0;i<p.second;++i){
+          temp+=str;
+	        str=p.first+temp;
+        }
+        else{
+          str+=c;
+	      }
+	    }
+      return curr_str;   
+};
