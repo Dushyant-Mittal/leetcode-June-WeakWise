@@ -1,0 +1,18 @@
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        if(preorder.empty()){
+            return nullptr;
+        }
+        int val=preorder[0];
+        TreeNode* root=new TreeNode(val);
+        int index=find(inorder.begin(),inorder.end(),val)-inorder.begin();
+        vector<int>lP(preorder.begin()+1,preorder.begin()+1+index);
+        vector<int>lI(inorder.begin(),inorder.begin()+index);
+        vector<int>rP(preorder.begin()+1+index,preorder.end());
+        vector<int>rI(inorder.begin()+index+1,inorder.end());
+        root->left=buildTree(lP,lI);
+        root->right=buildTree(rP,rI);
+        return root;
+    }
+};
